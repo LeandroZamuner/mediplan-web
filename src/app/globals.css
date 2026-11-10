@@ -1,0 +1,112 @@
+/* Tokens del diseño de Figma (archivo "Lean - Proyecto UNI"). Nombres = nombres de los estilos de Figma. */
+:root {
+  --primary-01: #e0e3f5;
+  --primary-05: #3646ab;
+  --primary-06: #27327c;
+
+  --neutral-00: #ffffff;
+  --neutral-01: #eff0f1;
+  --neutral-02: #dadbdd;
+  --neutral-03: #b5b7bc;
+  --neutral-05: #3a404d;
+  --neutral-06: #252b37;
+  --neutral-07: #111827;
+  --neutral-08: #091120;
+
+  --alpha-white-10: rgba(255, 255, 255, 0.1);
+  --alpha-white-25: rgba(255, 255, 255, 0.25);
+
+  --radius-card: 32px;
+  --radius-button: 21px;
+
+  --font-poppins: var(--font-poppins-loaded), system-ui, sans-serif;
+  --font-inter: var(--font-inter-loaded), system-ui, sans-serif;
+
+  --page-max: 1920px;
+
+  /* Escala del diseño: 1px = tamaño original. Cada sección la reduce en proporción cuando la pantalla
+     es más chica que el lienzo de Figma (ver app/page.module.css y components/app/AppShell.module.css). */
+  --k: 1px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--neutral-00);
+  color: var(--neutral-06);
+  font-family: var(--font-poppins);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+  font-weight: inherit;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* Foco visible para quien navega con teclado (la audiencia incluye adultos mayores). */
+:focus-visible {
+  outline: 3px solid var(--primary-05);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+/* Saltar al contenido */
+.skip-link {
+  position: absolute;
+  left: 16px;
+  top: -80px;
+  z-index: 100;
+  padding: 12px 20px;
+  background: var(--primary-05);
+  color: var(--neutral-00);
+  border-radius: 12px;
+  font-weight: 500;
+}
+.skip-link:focus {
+  top: 16px;
+}
+
+/* Responsive: tablet (<= 1279px) y mobile (<= 767px). Los valores de tablet salen de las capturas de Figma
+   disponibles; los de mobile son una adaptación a confirmar con el diseño. */
+@media (max-width: 767px) {
+  :root {
+    --radius-card: 24px;
+  }
+}

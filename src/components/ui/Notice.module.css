@@ -1,0 +1,18 @@
+.notice {
+  padding: calc(16 * var(--k)) calc(20 * var(--k));
+  border-radius: calc(16 * var(--k));
+  font-size: max(14px, calc(17 * var(--k)));
+  line-height: calc(26 * var(--k));
+}
+.info {
+  background: var(--primary-01);
+  color: var(--primary-06);
+}
+.error {
+  background: #fde7e6;
+  color: #8c1d18;
+}
+.ok {
+  background: #e3f4e6;
+  color: #1c5a2b;
+}

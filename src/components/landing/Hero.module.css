@@ -1,0 +1,88 @@
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: calc(40 * var(--k));
+  min-height: calc(840 * var(--k));
+  margin: 40px 0; /* 40px bajo el menú y 40px antes de la sección siguiente */
+  padding: calc(120 * var(--k)) calc(80 * var(--k));
+  border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.image {
+  object-fit: cover;
+  object-position: 75% center;
+  z-index: 0;
+}
+.textBox,
+.actions {
+  position: relative;
+  z-index: 1;
+}
+.textBox {
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--k));
+  width: calc(800 * var(--k));
+  max-width: 100%;
+}
+.title {
+  font-size: calc(64 * var(--k));
+  line-height: normal;
+  color: var(--neutral-08);
+}
+.text {
+  font-size: calc(24 * var(--k));
+  line-height: calc(40 * var(--k));
+  color: var(--neutral-06);
+}
+.actions {
+  display: flex;
+}
+
+/* Tablet y mobile: el texto va ARRIBA y la foto ABAJO (si no, el texto tapa a la persona).
+   El fondo reproduce los rosas de la foto y la foto se funde hacia él por arriba, sin costura. */
+@media (max-width: 1279px) {
+  .hero {
+    min-height: 784px;
+    padding: 64px 48px 0;
+    margin: 24px 0;
+    justify-content: flex-start;
+    background: linear-gradient(90deg, #fed9e3 0%, #eba9b3 45%, #eeabb5 100%);
+  }
+  /* next/image con "fill" fija estos valores en línea, por eso el !important */
+  .image {
+    inset: auto 0 0 0 !important;
+    width: 100% !important;
+    height: 60% !important;
+    object-position: 78% 28%;
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 12%);
+    mask-image: linear-gradient(to bottom, transparent 0%, #000 12%);
+  }
+  .title {
+    font-size: clamp(40px, 7vw, 56px);
+    line-height: 1.2;
+  }
+  .text {
+    font-size: 20px;
+    line-height: 32px;
+  }
+}
+@media (max-width: 767px) {
+  .hero {
+    min-height: 700px;
+    padding: 40px 24px 0;
+  }
+  .image {
+    height: 56% !important;
+    object-position: 72% 25%;
+  }
+  .title {
+    font-size: 36px;
+  }
+  .text {
+    font-size: 18px;
+    line-height: 28px;
+  }
+}

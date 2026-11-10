@@ -1,0 +1,32 @@
+.logo {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+}
+.header {
+  width: calc(388 * var(--k));
+}
+.footer {
+  width: calc(548 * var(--k));
+}
+.part {
+  position: absolute;
+  display: block;
+}
+
+@media (max-width: 1279px) {
+  .header {
+    width: 280px;
+  }
+  .footer {
+    width: 400px;
+  }
+}
+@media (max-width: 767px) {
+  .header {
+    width: 220px;
+  }
+  .footer {
+    width: 280px;
+  }
+}

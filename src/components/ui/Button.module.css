@@ -1,0 +1,98 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(14 * var(--k));
+  border: 0;
+  cursor: pointer;
+  font-family: var(--font-inter);
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+.button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.full {
+  width: 100%;
+}
+
+.primary {
+  background: var(--primary-05);
+  color: var(--neutral-00);
+}
+.primary:not(:disabled):hover {
+  background: var(--primary-06);
+}
+.light {
+  background: var(--primary-01);
+  color: var(--primary-05);
+}
+.light:not(:disabled):hover {
+  background: var(--neutral-00);
+}
+
+/* Tamaños tomados de los botones del diseño */
+.md {
+  padding: calc(21 * var(--k)) calc(28 * var(--k));
+  border-radius: calc(21 * var(--k));
+  font-size: calc(24.5 * var(--k));
+  line-height: calc(42 * var(--k));
+}
+.lg {
+  padding: calc(28 * var(--k));
+  border-radius: calc(21 * var(--k));
+  font-size: calc(28 * var(--k));
+  line-height: calc(42 * var(--k));
+}
+.sm {
+  padding: calc(20 * var(--k)) calc(26.67 * var(--k));
+  border-radius: calc(20 * var(--k));
+  font-size: calc(23.33 * var(--k));
+  line-height: calc(40 * var(--k));
+  gap: calc(13.33 * var(--k));
+}
+
+.icon {
+  position: relative;
+  display: block;
+  flex-shrink: 0;
+  width: calc(35 * var(--k));
+  height: calc(35 * var(--k));
+}
+
+@media (max-width: 1279px) {
+  .md,
+  .lg {
+    padding: 18px 24px;
+    font-size: 20px;
+    line-height: 32px;
+    border-radius: 18px;
+    gap: 12px;
+  }
+  .sm {
+    padding: 16px 22px;
+    font-size: 18px;
+    line-height: 28px;
+    border-radius: 16px;
+  }
+  .icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media (max-width: 767px) {
+  .md,
+  .lg {
+    padding: 16px 20px;
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .sm {
+    padding: 14px 18px;
+    font-size: 16px;
+    line-height: 24px;
+  }
+}

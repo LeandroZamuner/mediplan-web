@@ -1,0 +1,95 @@
+.shell {
+  display: grid;
+  grid-template-columns: calc(320 * var(--k)) minmax(0, 1fr);
+  min-height: 100vh;
+  padding: calc(24 * var(--k));
+  gap: calc(24 * var(--k));
+}
+.aside {
+  position: sticky;
+  top: calc(24 * var(--k));
+  align-self: start;
+  height: calc(100vh - calc(48 * var(--k)));
+}
+.main {
+  min-width: 0;
+  padding: calc(16 * var(--k)) calc(24 * var(--k)) calc(80 * var(--k));
+}
+.topbar {
+  display: none;
+}
+.overlay {
+  display: none;
+}
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(20 * var(--k));
+  min-height: 100vh;
+  padding: calc(24 * var(--k));
+  font-size: max(14px, calc(20 * var(--k)));
+  color: var(--neutral-05);
+}
+
+/* Tablet y pantallas chicas: la barra lateral pasa a un menú que se abre desde arriba */
+@media (max-width: 1023px) {
+  .shell {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 8px;
+  }
+  .topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 4px 8px;
+  }
+  .menuButton {
+    display: grid;
+    place-items: center;
+    width: 56px;
+    height: 56px;
+    border: 0;
+    border-radius: 16px;
+    background: var(--primary-01);
+    color: var(--primary-05);
+    cursor: pointer;
+  }
+  .overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    background: rgba(9, 17, 32, 0.5);
+  }
+  .aside {
+    position: fixed;
+    inset: 12px auto 12px 12px;
+    z-index: 50;
+    width: min(340px, calc(100vw - 24px));
+    height: auto;
+    transform: translateX(-110%);
+    transition: transform 0.2s ease;
+  }
+  .asideOpen {
+    transform: translateX(0);
+  }
+  .main {
+    padding: 8px 4px 64px;
+  }
+}
+@media (min-width: 1024px) {
+  .menuButton {
+    display: none;
+  }
+}
+
+/* Escala del panel: tamaño completo desde 1600px; a 1440px un 90%; nunca menos de 85%.
+   (Las tarjetas, títulos y textos se achican juntos para que no se vea "todo muy grande" en una notebook.) */
+@media (min-width: 1024px) {
+  .shell {
+    --k: clamp(0.85px, calc(100vw / 1600), 1px);
+  }
+}

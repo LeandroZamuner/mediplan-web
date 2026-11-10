@@ -1,0 +1,63 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(40 * var(--k));
+  min-height: 100vh;
+  padding: calc(32 * var(--k)) calc(16 * var(--k)) calc(64 * var(--k));
+}
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(16 * var(--k));
+  width: min(calc(620 * var(--k)), 100%);
+  padding: calc(48 * var(--k)) calc(40 * var(--k));
+  text-align: center;
+}
+.icon {
+  display: grid;
+  place-items: center;
+  width: calc(88 * var(--k));
+  height: calc(88 * var(--k));
+  border-radius: 50%;
+  background: var(--neutral-00);
+  color: var(--primary-05);
+}
+.title {
+  font-size: calc(34 * var(--k));
+  line-height: 1.25;
+  color: var(--neutral-06);
+}
+.plan {
+  font-size: calc(28 * var(--k));
+  font-weight: 500;
+  color: var(--primary-05);
+}
+.text {
+  max-width: calc(460 * var(--k));
+  font-size: max(14px, calc(19 * var(--k)));
+  line-height: calc(30 * var(--k));
+  color: var(--neutral-05);
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--k));
+  width: 100%;
+  margin-top: calc(12 * var(--k));
+  text-align: left;
+}
+.as {
+  text-align: center;
+  font-size: max(14px, calc(18 * var(--k)));
+  color: var(--neutral-05);
+}
+@media (max-width: 599px) {
+  .card {
+    padding: 32px 20px;
+  }
+  .title {
+    font-size: 28px;
+  }
+}

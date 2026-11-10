@@ -1,0 +1,66 @@
+.block {
+  margin-bottom: calc(48 * var(--k));
+  max-width: calc(980 * var(--k));
+}
+.sectionTitle {
+  margin-bottom: calc(20 * var(--k));
+  font-size: calc(30 * var(--k));
+  line-height: 1.3;
+  color: var(--neutral-06);
+}
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--k));
+}
+.planName {
+  margin-bottom: calc(16 * var(--k));
+  font-size: calc(24 * var(--k));
+  line-height: 1.3;
+  color: var(--neutral-06);
+}
+.planLink:hover {
+  color: var(--primary-05);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.muted {
+  font-size: max(14px, calc(18 * var(--k)));
+  line-height: calc(28 * var(--k));
+  color: var(--neutral-05);
+}
+.invitation,
+.supervised {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(16 * var(--k)) calc(24 * var(--k));
+}
+.supervised .planName {
+  margin-bottom: calc(4 * var(--k));
+}
+.invTitle {
+  font-size: calc(22 * var(--k));
+  font-weight: 500;
+  color: var(--neutral-06);
+}
+.invText {
+  margin-top: calc(4 * var(--k));
+  max-width: calc(560 * var(--k));
+  font-size: max(14px, calc(17 * var(--k)));
+  line-height: calc(26 * var(--k));
+  color: var(--neutral-05);
+}
+.invActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(12 * var(--k));
+}
+.footnote {
+  max-width: calc(980 * var(--k));
+  font-size: max(14px, calc(16 * var(--k)));
+  line-height: calc(24 * var(--k));
+  color: var(--neutral-05);
+}

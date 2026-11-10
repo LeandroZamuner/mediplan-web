@@ -1,0 +1,26 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 48px 24px 96px;
+}
+.title {
+  font-size: clamp(32px, 5vw, 56px);
+  line-height: 1.2;
+  color: var(--neutral-06);
+}
+.text {
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--neutral-05);
+}
+.back {
+  padding: 14px 20px;
+  border-radius: 16px;
+  background: var(--primary-01);
+  color: var(--primary-05);
+  font-weight: 500;
+}

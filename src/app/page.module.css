@@ -1,0 +1,31 @@
+/* Lienzo de 1920px del diseño: 40px de margen alrededor de todo. */
+.page {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: calc(40 * var(--k));
+}
+.main {
+  /* flex: los márgenes verticales de las secciones no se fusionan (como los "Page" de Figma) */
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 1279px) {
+  .page {
+    padding: 24px;
+  }
+}
+@media (max-width: 767px) {
+  .page {
+    padding: 16px;
+  }
+}
+
+/* Entre 1280px y 1920px la landing se achica EN PROPORCIÓN (como una imagen): el diseño de Figma es de 1920px
+   y, sin esto, en una notebook todo se ve ~30% más grande de lo pensado y el logo se pisa con el menú.
+   Debajo de 1280px rige el diseño de tablet/celular (con medidas propias). */
+@media (min-width: 1280px) {
+  .page {
+    --k: clamp(0.6667px, calc(100vw / 1920), 1px);
+  }
+}

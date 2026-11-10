@@ -1,0 +1,89 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: calc(32 * var(--k));
+  height: 100%;
+  padding: calc(28 * var(--k)) calc(20 * var(--k)) calc(24 * var(--k));
+  background: var(--neutral-01);
+  border-radius: var(--radius-card);
+}
+.logo {
+  align-self: flex-start;
+  padding-left: calc(8 * var(--k));
+}
+.nav {
+  flex: 1;
+}
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--k));
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: calc(16 * var(--k));
+  padding: calc(16 * var(--k)) calc(20 * var(--k));
+  border-radius: calc(16 * var(--k));
+  font-size: max(14px, calc(20 * var(--k)));
+  line-height: calc(32 * var(--k));
+  color: var(--neutral-06);
+  transition: background-color 0.15s ease;
+}
+.item:hover {
+  background: var(--neutral-02);
+}
+/* La sección activa usa la misma píldora lavanda del menú de la landing */
+.active,
+.active:hover {
+  background: var(--primary-01);
+  color: var(--primary-05);
+  font-weight: 500;
+}
+.label {
+  flex: 1;
+}
+.badge {
+  display: grid;
+  place-items: center;
+  min-width: calc(28 * var(--k));
+  height: calc(28 * var(--k));
+  padding: 0 calc(8 * var(--k));
+  border-radius: calc(999 * var(--k));
+  background: var(--primary-05);
+  color: var(--neutral-00);
+  font-size: max(14px, calc(15 * var(--k)));
+  font-weight: 600;
+}
+.user {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--k));
+  padding: calc(16 * var(--k));
+  border-radius: calc(20 * var(--k));
+  background: var(--neutral-00);
+}
+.email {
+  font-size: max(14px, calc(16 * var(--k)));
+  line-height: calc(24 * var(--k));
+  color: var(--neutral-05);
+  overflow-wrap: anywhere; /* el correo se parte en vez de cortarse con "…" */
+}
+.logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(10 * var(--k));
+  padding: calc(12 * var(--k)) calc(16 * var(--k));
+  border: 0;
+  border-radius: calc(14 * var(--k));
+  background: var(--primary-01);
+  color: var(--primary-05);
+  font-family: inherit;
+  font-size: max(14px, calc(17 * var(--k)));
+  font-weight: 500;
+  cursor: pointer;
+}
+.logout:hover {
+  background: var(--neutral-02);
+}

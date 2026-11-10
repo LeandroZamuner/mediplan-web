@@ -1,0 +1,126 @@
+.fields {
+  display: flex;
+  flex-direction: column;
+  gap: calc(24 * var(--k));
+}
+.row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(20 * var(--k));
+}
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--k));
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.group legend {
+  margin-bottom: calc(4 * var(--k));
+  padding: 0;
+  font-size: max(14px, calc(18 * var(--k)));
+  line-height: calc(28 * var(--k));
+  font-weight: 500;
+  color: var(--neutral-06);
+}
+.days {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(10 * var(--k));
+}
+.day {
+  min-width: calc(64 * var(--k));
+  min-height: calc(52 * var(--k));
+  padding: calc(10 * var(--k)) calc(14 * var(--k));
+  border: 1.5px solid var(--neutral-03);
+  border-radius: calc(14 * var(--k));
+  background: var(--neutral-00);
+  color: var(--neutral-06);
+  font-family: inherit;
+  font-size: max(14px, calc(17 * var(--k)));
+  cursor: pointer;
+}
+.day:hover {
+  border-color: var(--primary-05);
+}
+.dayOn {
+  border-color: var(--primary-05);
+  background: var(--primary-05);
+  color: var(--neutral-00);
+  font-weight: 500;
+}
+.all {
+  min-height: calc(52 * var(--k));
+  padding: calc(10 * var(--k)) calc(16 * var(--k));
+  border: 0;
+  border-radius: calc(14 * var(--k));
+  background: var(--primary-01);
+  color: var(--primary-05);
+  font-family: inherit;
+  font-size: max(14px, calc(17 * var(--k)));
+  font-weight: 500;
+  cursor: pointer;
+}
+.times {
+  display: flex;
+  flex-wrap: wrap;
+  gap: calc(12 * var(--k));
+}
+.time {
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--k));
+}
+.timeInput {
+  min-height: calc(56 * var(--k));
+  padding: calc(10 * var(--k)) calc(16 * var(--k));
+  border: 1.5px solid var(--neutral-03);
+  border-radius: calc(14 * var(--k));
+  background: var(--neutral-00);
+  font-family: inherit;
+  font-size: max(14px, calc(20 * var(--k)));
+  color: var(--neutral-08);
+}
+.timeInput:focus-visible {
+  outline: 3px solid var(--primary-01);
+  border-color: var(--primary-05);
+}
+.iconButton {
+  display: grid;
+  place-items: center;
+  width: calc(48 * var(--k));
+  height: calc(48 * var(--k));
+  border: 0;
+  border-radius: calc(14 * var(--k));
+  background: var(--neutral-01);
+  color: #8c1d18;
+  cursor: pointer;
+}
+.add {
+  display: inline-flex;
+  align-items: center;
+  align-self: flex-start;
+  gap: calc(8 * var(--k));
+  padding: calc(10 * var(--k)) calc(16 * var(--k));
+  border: 0;
+  border-radius: calc(14 * var(--k));
+  background: var(--primary-01);
+  color: var(--primary-05);
+  font-family: inherit;
+  font-size: max(14px, calc(17 * var(--k)));
+  font-weight: 500;
+  cursor: pointer;
+}
+.error {
+  font-size: max(14px, calc(16 * var(--k)));
+  line-height: calc(24 * var(--k));
+  color: #b3261e;
+  font-weight: 500;
+}
+@media (max-width: 679px) {
+  .row {
+    grid-template-columns: 1fr;
+  }
+}

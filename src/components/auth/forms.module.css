@@ -1,0 +1,101 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.title {
+  font-size: 44px;
+  line-height: 1.2;
+  color: var(--neutral-06);
+}
+.subtitle {
+  margin-top: -8px;
+  font-size: 20px;
+  line-height: 32px;
+  color: var(--neutral-05);
+}
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  font-size: 17px;
+}
+.link {
+  color: var(--primary-05);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.link:hover {
+  color: var(--primary-06);
+}
+.choices {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+.choices legend {
+  margin-bottom: 8px;
+  padding: 0;
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 500;
+  color: var(--neutral-06);
+}
+.choice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1.5px solid var(--neutral-03);
+  border-radius: 16px;
+  cursor: pointer;
+}
+.choice input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+.choice:has(input:checked) {
+  border-color: var(--primary-05);
+  background: var(--primary-01);
+}
+.choice:has(input:focus-visible) {
+  outline: 3px solid var(--primary-05);
+  outline-offset: 2px;
+}
+.choiceTitle {
+  font-weight: 500;
+  color: var(--neutral-06);
+}
+.choiceText {
+  font-size: 15px;
+  line-height: 22px;
+  color: var(--neutral-05);
+}
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+@media (max-width: 560px) {
+  .title {
+    font-size: 34px;
+  }
+  .choices {
+    grid-template-columns: 1fr;
+  }
+}
+.linkButton {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  cursor: pointer;
+}

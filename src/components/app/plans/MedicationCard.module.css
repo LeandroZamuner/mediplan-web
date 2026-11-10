@@ -1,0 +1,88 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(20 * var(--k));
+  padding: calc(28 * var(--k));
+  border-radius: calc(24 * var(--k));
+  background: var(--neutral-00);
+}
+.head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: calc(12 * var(--k));
+}
+.name {
+  font-size: calc(24 * var(--k));
+  line-height: 1.3;
+  color: var(--neutral-06);
+}
+.dose {
+  font-size: max(14px, calc(18 * var(--k)));
+  color: var(--neutral-05);
+}
+.tools {
+  display: flex;
+  gap: calc(8 * var(--k));
+}
+.tool {
+  display: grid;
+  place-items: center;
+  width: calc(48 * var(--k));
+  height: calc(48 * var(--k));
+  border: 0;
+  border-radius: calc(14 * var(--k));
+  background: var(--neutral-01);
+  color: var(--neutral-06);
+  cursor: pointer;
+}
+.tool:hover {
+  background: var(--primary-01);
+}
+.danger {
+  color: #8c1d18;
+}
+.danger:hover {
+  background: #fbdcda;
+}
+.facts {
+  display: flex;
+  flex-direction: column;
+  gap: calc(12 * var(--k));
+  margin: 0;
+}
+.facts div {
+  display: grid;
+  grid-template-columns: calc(110 * var(--k)) minmax(0, 1fr);
+  gap: calc(12 * var(--k));
+  font-size: max(14px, calc(18 * var(--k)));
+  line-height: calc(28 * var(--k));
+}
+.facts dt {
+  color: var(--neutral-05);
+}
+.facts dd {
+  margin: 0;
+  color: var(--neutral-06);
+}
+.stock {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: calc(10 * var(--k));
+}
+.refill {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: calc(12 * var(--k));
+}
+.refill > :first-child {
+  flex: 1 1 calc(220 * var(--k));
+}
+@media (max-width: 599px) {
+  .facts div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}

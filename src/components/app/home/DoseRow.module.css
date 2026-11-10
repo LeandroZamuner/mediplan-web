@@ -1,0 +1,55 @@
+.row {
+  display: grid;
+  grid-template-columns: calc(84 * var(--k)) minmax(0, 1fr) auto calc(190 * var(--k));
+  align-items: center;
+  gap: calc(16 * var(--k));
+  padding: calc(20 * var(--k)) calc(24 * var(--k));
+  border-radius: calc(20 * var(--k));
+  background: var(--neutral-00);
+}
+.time {
+  font-size: calc(26 * var(--k));
+  font-weight: 500;
+  color: var(--neutral-06);
+}
+.med {
+  font-size: max(14px, calc(20 * var(--k)));
+  line-height: calc(28 * var(--k));
+  font-weight: 500;
+  color: var(--neutral-06);
+}
+.dose {
+  font-weight: 400;
+  color: var(--neutral-05);
+}
+.plan {
+  font-size: max(14px, calc(16 * var(--k)));
+  line-height: calc(24 * var(--k));
+  color: var(--neutral-05);
+}
+.action {
+  display: flex;
+  justify-content: flex-end;
+}
+.action button {
+  padding: calc(12 * var(--k)) calc(18 * var(--k));
+  font-size: max(14px, calc(17 * var(--k)));
+  line-height: calc(24 * var(--k));
+}
+.done {
+  color: #1c5a2b;
+}
+@media (max-width: 767px) {
+  .row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 8px 12px;
+  }
+  .row > :nth-child(3) {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .action {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+  }
+}

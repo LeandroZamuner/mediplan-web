@@ -1,0 +1,71 @@
+name: Publicar en GitHub Pages
+
+# Cada vez que cambia la rama principal se compila la web como sitio estático y se publica.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+      - run: npx tsc --noEmit
+      - run: npx eslint src
+
+      # El sitio vive en https://<usuario>.github.io/<repo>/ → la subcarpeta es el nombre del repo.
+      # Queda en la raíz (sin subcarpeta) si el repo se llama <usuario>.github.io o si se configuró un dominio
+      # propio: en ese caso hay que crear la variable CUSTOM_DOMAIN del repo (por ejemplo www.mediplan.com.ar).
+      - name: Calcular la subcarpeta del sitio
+        id: base
+        env:
+          CUSTOM_DOMAIN: ${{ vars.CUSTOM_DOMAIN }}
+        run: |
+          repo="${GITHUB_REPOSITORY#*/}"
+          if [[ -n "$CUSTOM_DOMAIN" || "$repo" == *.github.io ]]; then echo "path=" >> "$GITHUB_OUTPUT"; else echo "path=/$repo" >> "$GITHUB_OUTPUT"; fi
+
+      # Estos valores son PÚBLICOS (terminan dentro del JavaScript del navegador): van como "Variables" del
+      # repo (Settings → Secrets and variables → Actions → Variables), no como secretos.
+      - name: Compilar el sitio estático
+        run: npm run build:pages
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ steps.base.outputs.path }}
+          NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_FIREBASE_API_KEY: ${{ vars.NEXT_PUBLIC_FIREBASE_API_KEY }}
+          NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN: ${{ vars.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN }}
+          NEXT_PUBLIC_FIREBASE_PROJECT_ID: ${{ vars.NEXT_PUBLIC_FIREBASE_PROJECT_ID }}
+          NEXT_PUBLIC_PLAY_STORE_URL: ${{ vars.NEXT_PUBLIC_PLAY_STORE_URL }}
+
+      - name: Evitar que Pages procese los archivos con Jekyll
+        run: touch out/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

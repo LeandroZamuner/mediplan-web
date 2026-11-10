@@ -1,0 +1,232 @@
+.footer {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--k));
+  min-height: calc(1120 * var(--k));
+  margin-top: calc(40 * var(--k));
+  padding: calc(200 * var(--k)) calc(80 * var(--k)) calc(80 * var(--k));
+  background: var(--neutral-06);
+  border-radius: var(--radius-card);
+  overflow: hidden;
+  color: var(--neutral-02);
+}
+.textures {
+  position: absolute;
+  left: calc(477 * var(--k));
+  top: calc(602 * var(--k));
+  width: calc(1419.966 * var(--k));
+  height: calc(1439.789 * var(--k));
+  pointer-events: none;
+}
+.main {
+  position: relative;
+  flex: 1 0 0;
+  display: flex;
+  gap: calc(40 * var(--k));
+}
+.brand {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 80px; /* como en Figma: el bloque social + newsletter sigue al eslogan */
+}
+.brandTop {
+  display: flex;
+  flex-direction: column;
+  gap: calc(40 * var(--k));
+}
+.slogan {
+  font-size: calc(36 * var(--k));
+  line-height: calc(56 * var(--k));
+  font-weight: 300;
+  color: var(--neutral-02);
+}
+.sloganLine {
+  display: block;
+}
+.brandBottom {
+  display: flex;
+  flex-direction: column;
+  gap: calc(56 * var(--k));
+}
+.social {
+  display: flex;
+  gap: calc(24 * var(--k));
+}
+.socialItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(80 * var(--k));
+  height: calc(80 * var(--k));
+  background: var(--alpha-white-10);
+  border-radius: calc(16 * var(--k));
+}
+a.socialItem:hover {
+  background: var(--alpha-white-25);
+}
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  gap: calc(8 * var(--k));
+}
+.newsletterLabel {
+  font-size: max(14px, calc(16 * var(--k)));
+  line-height: calc(24 * var(--k));
+  font-weight: 600;
+  color: var(--neutral-02);
+}
+.input {
+  display: flex;
+  align-items: center;
+  gap: calc(16 * var(--k));
+  width: calc(360 * var(--k));
+  max-width: 100%;
+  padding: calc(16 * var(--k));
+  background: var(--alpha-white-10);
+  border: 1px solid var(--alpha-white-25);
+  border-radius: calc(8 * var(--k));
+}
+.input input {
+  flex: 1 0 0;
+  min-width: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font-family: var(--font-inter);
+  font-size: max(14px, calc(16 * var(--k)));
+  line-height: calc(24 * var(--k));
+  color: var(--neutral-02);
+}
+.input input::placeholder {
+  color: var(--neutral-02);
+  opacity: 1;
+}
+.input input:disabled {
+  cursor: not-allowed;
+}
+.input input:focus-visible {
+  outline: none;
+}
+.input:focus-within {
+  outline: 3px solid var(--primary-01);
+  outline-offset: 2px;
+}
+.sections {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  gap: calc(40 * var(--k));
+}
+.linkGroup {
+  flex: 1 0 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(16 * var(--k));
+}
+.groupTitle {
+  font-size: calc(48 * var(--k));
+  line-height: calc(80 * var(--k));
+  font-weight: 500;
+  color: var(--neutral-00);
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: calc(24 * var(--k));
+  font-size: calc(24 * var(--k));
+  line-height: calc(40 * var(--k));
+}
+.links a:hover {
+  color: var(--neutral-00);
+  text-decoration: underline;
+}
+.actions {
+  position: relative;
+  display: flex;
+  gap: calc(24 * var(--k));
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1279px) {
+  .footer {
+    min-height: 0;
+    padding: 96px 40px 40px;
+    margin-top: 24px;
+    gap: 48px;
+  }
+  .main {
+    flex-direction: column;
+    gap: 64px;
+  }
+  .brand {
+    flex: none;
+    gap: 56px;
+  }
+  .brandTop {
+    gap: 24px;
+  }
+  .slogan {
+    font-size: 28px;
+    line-height: 44px;
+  }
+  .sections {
+    flex: none;
+    gap: 32px;
+  }
+  .groupTitle {
+    font-size: 36px;
+    line-height: 56px;
+  }
+  .links {
+    gap: 16px;
+    font-size: 20px;
+    line-height: 32px;
+  }
+  .textures {
+    left: auto;
+    right: -160px;
+    top: auto;
+    bottom: -260px;
+    width: 710px;
+    height: 720px;
+    opacity: 0.8;
+  }
+}
+@media (max-width: 767px) {
+  .footer {
+    padding: 56px 24px 32px;
+  }
+  .main {
+    gap: 48px;
+  }
+  .slogan {
+    font-size: 24px;
+    line-height: 36px;
+  }
+  .socialItem {
+    width: 64px;
+    height: 64px;
+  }
+  .sections {
+    flex-direction: column;
+    gap: 32px;
+  }
+  .groupTitle {
+    font-size: 30px;
+    line-height: 48px;
+  }
+  .links {
+    font-size: 18px;
+    line-height: 28px;
+  }
+  .input {
+    width: 100%;
+  }
+  .actions {
+    gap: 12px;
+  }
+}
