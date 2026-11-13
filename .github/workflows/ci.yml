@@ -19,6 +19,7 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npx eslint src
+      - run: npm test
       - name: Compilar como sitio estático
         run: npm run build:pages
         env:
