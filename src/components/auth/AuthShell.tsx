@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { Button } from "@/components/ui/Button";
 import { Logo } from "@/components/ui/Logo";
 import { Notice } from "@/components/ui/Notice";
+import { authTarget } from "@/lib/auth-route";
 import { getPendingInvite } from "@/lib/pending-invite";
 import { useAuth } from "./AuthProvider";
 import styles from "./AuthShell.module.css";
@@ -21,9 +22,10 @@ export function AuthShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const path = usePathname();
 
-  const goVerify = status === "needsVerification" && path !== "/verificar-correo";
-  const goLogin = status === "signedOut" && path === "/verificar-correo";
-  const goHome = status === "ready";
+  const target = authTarget(status, path);
+  const goHome = target === "home";
+  const goVerify = target === "verify";
+  const goLogin = target === "login";
 
   useEffect(() => {
     if (goHome) {

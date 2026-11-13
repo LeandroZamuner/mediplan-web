@@ -29,6 +29,7 @@ jobs:
       - run: npm ci
       - run: npx tsc --noEmit
       - run: npx eslint src
+      - run: npm test
 
       # El sitio vive en https://<usuario>.github.io/<repo>/ → la subcarpeta es el nombre del repo.
       # Queda en la raíz (sin subcarpeta) si el repo se llama <usuario>.github.io o si se configuró un dominio

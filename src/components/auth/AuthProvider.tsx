@@ -3,6 +3,7 @@
 import { onAuthStateChanged, signOut as fbSignOut, type User } from "firebase/auth";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ApiError, api } from "@/lib/api";
+import type { AuthStatus } from "@/lib/auth-route";
 import { firebaseAuth } from "@/lib/firebase";
 import type { Me } from "@/lib/types";
 
@@ -14,7 +15,7 @@ import type { Me } from "@/lib/types";
  *  ready             sesión válida y usuario registrado en MediPlan (`me` disponible)
  *  error             la API no respondió como esperábamos
  */
-export type AuthStatus = "loading" | "signedOut" | "needsVerification" | "ready" | "error";
+export type { AuthStatus };
 
 type AuthContextValue = {
   status: AuthStatus;
