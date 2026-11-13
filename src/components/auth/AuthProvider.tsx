@@ -1,8 +1,9 @@
 "use client";
 
 import { onAuthStateChanged, signOut as fbSignOut, type User } from "firebase/auth";
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ApiError, api } from "@/lib/api";
+import { latestOnly } from "@/lib/latest";
 import type { AuthStatus } from "@/lib/auth-route";
 import { firebaseAuth } from "@/lib/firebase";
 import type { Me } from "@/lib/types";
@@ -45,8 +46,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [firebaseUser, setFirebaseUser] = useState<User | null>(null);
   const [me, setMe] = useState<Me | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const beginLoad = useRef(latestOnly()).current;
 
   const load = useCallback(async (user: User | null) => {
+    // Cargar la sesión tarda (varias llamadas): si mientras tanto cambió (por ejemplo, la persona salió de la cuenta),
+    // el resultado de la carga vieja se descarta para que no pise al estado nuevo.
+    const stale = beginLoad();
     setFirebaseUser(user);
     if (!user) {
       setMe(null);
@@ -55,12 +60,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
     try {
       if (!user.emailVerified) await user.reload();
+      if (stale()) return;
       if (!user.emailVerified) {
         setMe(null);
         setStatus("needsVerification");
         return;
       }
       await user.getIdToken(true); // refresca el token para que traiga "email verificado"
+      if (stale()) return;
       let profile: Me;
       try {
         profile = await api<Me>("/me");
@@ -71,10 +78,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           throw e;
         }
       }
+      if (stale()) return;
       setMe(profile);
       setError(null);
       setStatus("ready");
     } catch (e) {
+      if (stale()) return;
       if (e instanceof ApiError && e.status === 403 && /sin verificar/i.test(e.message)) {
         setStatus("needsVerification");
         return;
@@ -82,7 +91,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setError(e instanceof Error ? e.message : "No pudimos conectar con MediPlan");
       setStatus("error");
     }
-  }, []);
+  }, [beginLoad]);
 
   useEffect(() => onAuthStateChanged(firebaseAuth(), (user) => void load(user)), [load]);
 
