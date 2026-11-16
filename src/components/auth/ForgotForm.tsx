@@ -1,13 +1,12 @@
 "use client";
 
-import { sendPasswordResetEmail } from "firebase/auth";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Notice } from "@/components/ui/Notice";
 import { authErrorMessage } from "@/lib/auth-errors";
-import { firebaseAuth } from "@/lib/firebase";
+import { requestPasswordReset } from "@/lib/account-mail";
 import styles from "./forms.module.css";
 
 export function ForgotForm() {
@@ -21,7 +20,7 @@ export function ForgotForm() {
     setBusy(true);
     setError(null);
     try {
-      await sendPasswordResetEmail(firebaseAuth(), email.trim());
+      await requestPasswordReset(email);
       setSent(true);
     } catch (err) {
       // Si el correo no existe no lo decimos (no revelamos quién tiene cuenta): mismo mensaje de éxito.

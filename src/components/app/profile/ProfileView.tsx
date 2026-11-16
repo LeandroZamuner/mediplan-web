@@ -1,15 +1,14 @@
 "use client";
 
-import { sendPasswordResetEmail } from "firebase/auth";
 import { useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/AuthProvider";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Notice } from "@/components/ui/Notice";
 import { PageHeader } from "@/components/ui/PageHeader";
+import { requestPasswordReset } from "@/lib/account-mail";
 import { api } from "@/lib/api";
 import { authErrorMessage } from "@/lib/auth-errors";
-import { firebaseAuth } from "@/lib/firebase";
 import styles from "./ProfileView.module.css";
 
 const COMMON_ZONES = [
@@ -56,7 +55,7 @@ export function ProfileView() {
 
   async function resetPassword() {
     try {
-      await sendPasswordResetEmail(firebaseAuth(), me!.email);
+      await requestPasswordReset(me!.email);
       setResetMessage({ kind: "ok", text: `Te enviamos un enlace a ${me!.email} para elegir una contraseña nueva.` });
     } catch (err) {
       setResetMessage({ kind: "error", text: authErrorMessage(err) });
