@@ -1,9 +1,9 @@
 "use client";
 
-import { sendEmailVerification } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Notice } from "@/components/ui/Notice";
+import { requestVerification } from "@/lib/account-mail";
 import { authErrorMessage } from "@/lib/auth-errors";
 import { useAuth } from "./AuthProvider";
 import styles from "./forms.module.css";
@@ -40,7 +40,13 @@ export function VerifyPanel() {
   async function resend() {
     if (!firebaseUser) return;
     try {
-      await sendEmailVerification(firebaseUser);
+      const sent = await requestVerification(firebaseUser);
+      if (!sent) {
+        // Ya lo verificó (por ejemplo desde otra pestaña): se vuelve a comprobar y esta pantalla se cierra sola.
+        await recheck();
+        setMessage({ kind: "info", text: "Tu correo ya figura como verificado." });
+        return;
+      }
       setCooldown(COOLDOWN_SECONDS);
       setMessage({ kind: "ok", text: "Listo, te enviamos el correo de nuevo." });
     } catch (err) {

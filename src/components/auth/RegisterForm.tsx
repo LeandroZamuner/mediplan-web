@@ -1,11 +1,12 @@
 "use client";
 
-import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import Link from "next/link";
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { Field } from "@/components/ui/Field";
 import { Notice } from "@/components/ui/Notice";
+import { requestVerification } from "@/lib/account-mail";
 import { authErrorMessage } from "@/lib/auth-errors";
 import { firebaseAuth } from "@/lib/firebase";
 import { ROLE_KEY } from "./AuthProvider";
@@ -35,8 +36,9 @@ export function RegisterForm() {
         /* sin almacenamiento: se registra como paciente */
       }
       const cred = await createUserWithEmailAndPassword(firebaseAuth(), email.trim(), password);
-      await sendEmailVerification(cred.user);
-      // AuthShell nos lleva a "Revisá tu correo" al detectar el correo sin verificar
+      // No se espera: la API gratuita puede tardar en despertar y mientras tanto AuthShell ya nos lleva a "Revisá tu correo".
+      // Si el envío falla, desde esa pantalla se puede reenviar.
+      void requestVerification(cred.user).catch(() => undefined);
     } catch (err) {
       setError(authErrorMessage(err));
       setBusy(false);
