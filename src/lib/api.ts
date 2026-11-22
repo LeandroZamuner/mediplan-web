@@ -7,6 +7,8 @@ export class ApiError extends Error {
   constructor(
     public status: number,
     message: string,
+    /** Código de la API para casos puntuales (por ejemplo "plan_limit" al llegar al tope del plan gratis). */
+    public code?: string,
   ) {
     super(message);
   }
@@ -27,6 +29,6 @@ export async function api<T>(path: string, { json, ...init }: Options = {}): Pro
   const res = await fetch(`${API_URL}/api/v1${path}`, { ...init, headers, body });
   if (res.status === 204) return undefined as T;
   const data = await res.json().catch(() => null);
-  if (!res.ok) throw new ApiError(res.status, data?.error ?? "Ocurrió un error inesperado");
+  if (!res.ok) throw new ApiError(res.status, data?.error ?? "Ocurrió un error inesperado", data?.code);
   return data as T;
 }

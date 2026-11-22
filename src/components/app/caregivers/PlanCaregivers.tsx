@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Chip } from "@/components/ui/Chip";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { Field } from "@/components/ui/Field";
+import { ErrorNotice } from "@/components/ui/ErrorNotice";
 import { Notice } from "@/components/ui/Notice";
 import { api } from "@/lib/api";
 import { formatDate } from "@/lib/dates";
@@ -99,7 +100,7 @@ export function PlanCaregivers({ plan }: { plan: Plan }) {
         </Button>
       </form>
 
-      {error && <Notice kind="error">{error}</Notice>}
+      {error && <ErrorNotice message={error} />}
 
       {share && (
         <Notice kind="ok">
