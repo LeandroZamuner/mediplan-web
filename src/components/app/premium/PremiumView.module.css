@@ -74,3 +74,20 @@
     grid-template-columns: 1fr;
   }
 }
+.check {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(14 * var(--k));
+  font-size: max(14px, calc(17 * var(--k)));
+  line-height: calc(26 * var(--k));
+  color: var(--neutral-06);
+}
+.check input {
+  flex: none;
+  width: calc(22 * var(--k));
+  height: calc(22 * var(--k));
+  min-width: 18px;
+  min-height: 18px;
+  margin-top: calc(3 * var(--k));
+  accent-color: var(--primary-05);
+}

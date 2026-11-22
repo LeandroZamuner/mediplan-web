@@ -9,6 +9,7 @@ import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { Notice } from "@/components/ui/Notice";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { api } from "@/lib/api";
+import { PreferencesCard } from "./PreferencesCard";
 import { longDate, premiumView, priceLabel } from "@/lib/premium";
 import type { Subscription } from "@/lib/types";
 import styles from "./PremiumView.module.css";
@@ -128,6 +129,8 @@ export function PremiumView() {
         )}
 
         {view === "unavailable" && <Notice>Los pagos todavía no están habilitados. Mientras tanto podés usar MediPlan con el plan gratis.</Notice>}
+
+        {(view === "premium" || view === "premium-ending") && <PreferencesCard />}
 
         <div className={styles.compare}>
           <Card>
