@@ -12,6 +12,7 @@ import { Card } from "@/components/ui/Card";
 import { Chip } from "@/components/ui/Chip";
 import { ConfirmDialog } from "@/components/ui/ConfirmDialog";
 import { Modal } from "@/components/ui/Modal";
+import { ErrorNotice } from "@/components/ui/ErrorNotice";
 import { Notice } from "@/components/ui/Notice";
 import { api, ApiError } from "@/lib/api";
 import { recordTaken, useTodayDoses, type TodayDose } from "@/lib/doses";
@@ -211,7 +212,7 @@ export function PlanDetail({ id }: { id: string }) {
           <form onSubmit={saveMedication} noValidate className={styles.modalForm}>
             {editing?.mode === "edit" && !editingRegular && <Notice kind="info">Este medicamento tiene horarios distintos según el día. Al guardar, se aplicarán los mismos horarios a todos los días que elijas.</Notice>}
             <MedicationFields draft={draft} errors={draftErrors} onChange={setDraft} showStockUnits={editing?.mode === "add"} />
-            {formError && <Notice kind="error">{formError}</Notice>}
+            {formError && <ErrorNotice message={formError} />}
             <div className={styles.modalActions}>
               <Button variant="light" onClick={closeForm}>
                 Cancelar

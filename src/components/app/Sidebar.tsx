@@ -2,6 +2,7 @@
 
 import {
   IconBell,
+  IconCrown,
   IconFirstAidKit,
   IconHeartHandshake,
   IconHome2,
@@ -23,6 +24,7 @@ const items = [
   { href: "/cuidadores", label: "Cuidadores", Icon: IconHeartHandshake },
   { href: "/historial", label: "Historial", Icon: IconReportAnalytics },
   { href: "/notificaciones", label: "Notificaciones", Icon: IconBell },
+  { href: "/premium", label: "Premium", Icon: IconCrown },
   { href: "/perfil", label: "Perfil", Icon: IconUser },
 ] as const;
 

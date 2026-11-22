@@ -55,3 +55,14 @@ export type CaregiverLink = {
   expiresAt: string;
   token?: string; // solo al crear la invitación
 };
+
+/** Estado de la suscripción (GET /me/subscription). Un tope en null significa "sin límite". */
+export type Subscription = {
+  tier: "free" | "premium";
+  cancelled: boolean; // Premium que ya no se renueva
+  pending: boolean; // empezó a pagar y el pago todavía no se confirmó
+  currentPeriodEnd: string | null;
+  limits: { maxActivePlans: number | null; maxMedications: number | null; maxCaregiversPerPlan: number | null };
+  usage: { activePlans: number; medications: number };
+  payments: { enabled: boolean; priceArs?: number; currency?: string; period?: string };
+};

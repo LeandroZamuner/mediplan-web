@@ -8,7 +8,7 @@ import { useMe } from "@/components/auth/AuthProvider";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Field } from "@/components/ui/Field";
-import { Notice } from "@/components/ui/Notice";
+import { ErrorNotice } from "@/components/ui/ErrorNotice";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { api } from "@/lib/api";
 import { todayIn } from "@/lib/plans";
@@ -79,7 +79,7 @@ export function PlanForm() {
         <IconPlus size={26} aria-hidden="true" /> Agregar otro medicamento
       </button>
 
-      {formError && <Notice kind="error">{formError}</Notice>}
+      {formError && <ErrorNotice message={formError} />}
 
       <div className={styles.actions}>
         <Button variant="light" href="/planes">
